@@ -12,6 +12,7 @@
 <button onclick="startWork()">开始工作</button>
 <button onclick="restWork()">开始休息</button>
 <script>
+var ONE_MINUTE = 60000;
 var workClock;
 var restClock;
 var showClock;
@@ -24,23 +25,31 @@ window.onload = function() {
 }
 function startWork() {
 	clearTimer();
-	workClock = setTimeout(function() {clearTimer();alert("工作结束，尽情享受休息吧")}, 25*60*1000);
+	workClock = setTimeout(function() {
+			clearTimer();
+			spanText.innerHTML = '0';
+			alert("工作结束，尽情享受休息吧");
+		}, 25*ONE_MINUTE);
 	beginTimer(25);
 	divText.innerHTML = "开始工作25分钟";
 }
 
 function restWork() {
 	clearTimer();
-	restClock = setTimeout(function() {clearTimer();alert("休息结束，努力工作吧")}, 5*60*1000);
+	restClock = setTimeout(function() {
+			clearTimer();
+			spanText.innerHTML = '0';
+			alert("休息结束，努力工作吧");
+		}, 5*ONE_MINUTE);
 	beginTimer(5);
 	divText.innerHTML = "开始休息5分钟";
 }
 
 function beginTimer(minutes) {
-	clearTimer();
+	clearInterval(showClock);
 	showTime = minutes;
 	spanText.innerHTML = showTime;
-	showClock = setInterval(function() {showTime--; if(showTime>=0) {spanText.innerHTML = showTime}}, 60*1000);
+	showClock = setInterval(function() {showTime--; if(showTime>=0) {spanText.innerHTML = showTime}}, ONE_MINUTE);
 }
 
 function clearTimer() {
