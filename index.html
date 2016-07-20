@@ -23,14 +23,14 @@ window.onload = function() {
 	spanText = document.getElementById("lastTime");
 }
 function startWork() {
-	clearTimeout(restClock);
+	clearTimer();
 	workClock = setTimeout(function() {clearTimer();alert("工作结束，尽情享受休息吧")}, 25*60*1000);
 	beginTimer(25);
 	divText.innerHTML = "开始工作25分钟";
 }
 
 function restWork() {
-	clearTimeout(workClock);
+	clearTimer();
 	restClock = setTimeout(function() {clearTimer();alert("休息结束，努力工作吧")}, 5*60*1000);
 	beginTimer(5);
 	divText.innerHTML = "开始休息5分钟";
@@ -44,8 +44,9 @@ function beginTimer(minutes) {
 }
 
 function clearTimer() {
+	clearTimeout(workClock);
+	clearTimeout(restClock);
 	clearInterval(showClock);
 }
-
 </script>
 </body>
