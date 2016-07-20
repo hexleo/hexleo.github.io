@@ -1,1 +1,32 @@
-Hello World!
+<head>
+	<meta charset="UTF-8">
+	<title>番茄时钟</title>
+</head>
+<body>
+<div id="state">番茄时钟</div>
+<br />
+<textarea>当前任务：</textarea>
+<br />
+<button onclick="startWork()">开始工作</button>
+<button onclick="restWork()">开始休息</button>
+<script>
+var workClock;
+var restClock;
+var divText;
+window.onload = function() {
+	divText = document.getElementById("state");
+}
+function startWork() {
+	clearTimeout(restClock);
+	workClock = setTimeout(function() {alert("工作结束，尽情享受休息吧")}, 3*1000);  // 25*60*1000
+	divText.innerHTML = "开始工作25分钟";
+}
+
+function restWork() {
+	clearTimeout(workClock);
+	restClock = setTimeout(function() {alert("休息结束，努力工作吧")}, 3*1000);
+	divText.innerHTML = "开始休息5分钟";
+}
+
+</script>
+</body>
