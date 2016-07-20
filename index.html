@@ -3,7 +3,9 @@
 	<title>番茄时钟</title>
 </head>
 <body>
-<div id="state">番茄时钟</div>
+<h3><div id="state">番茄时钟</div></h3>
+<br />
+<h2>剩余<span id="lastTime">x</span>分钟</h2>
 <br />
 <textarea>当前任务：</textarea>
 <br />
@@ -12,20 +14,37 @@
 <script>
 var workClock;
 var restClock;
+var showClock;
+var showTime;
 var divText;
+var spanText;
 window.onload = function() {
 	divText = document.getElementById("state");
+	spanText = document.getElementById("lastTime");
 }
 function startWork() {
 	clearTimeout(restClock);
-	workClock = setTimeout(function() {alert("工作结束，尽情享受休息吧")}, 25*60*1000);
+	workClock = setTimeout(function() {clearTimer();alert("工作结束，尽情享受休息吧")}, 25*60*1000);
+	beginTimer(25);
 	divText.innerHTML = "开始工作25分钟";
 }
 
 function restWork() {
 	clearTimeout(workClock);
-	restClock = setTimeout(function() {alert("休息结束，努力工作吧")}, 5*60*1000);
+	restClock = setTimeout(function() {clearTimer();alert("休息结束，努力工作吧")}, 5*60*1000);
+	beginTimer(5);
 	divText.innerHTML = "开始休息5分钟";
+}
+
+function beginTimer(minutes) {
+	clearTimer();
+	showTime = minutes;
+	spanText.innerHTML = showTime;
+	showClock = setInterval(function() {showTime--; if(showTime>=0) {spanText.innerHTML = showTime}}, 60*1000);
+}
+
+function clearTimer() {
+	clearInterval(showClock);
 }
 
 </script>
