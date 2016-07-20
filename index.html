@@ -18,13 +18,13 @@ window.onload = function() {
 }
 function startWork() {
 	clearTimeout(restClock);
-	workClock = setTimeout(function() {alert("工作结束，尽情享受休息吧")}, 3*1000);  // 25*60*1000
+	workClock = setTimeout(function() {alert("工作结束，尽情享受休息吧")}, 25*60*1000);
 	divText.innerHTML = "开始工作25分钟";
 }
 
 function restWork() {
 	clearTimeout(workClock);
-	restClock = setTimeout(function() {alert("休息结束，努力工作吧")}, 3*1000);
+	restClock = setTimeout(function() {alert("休息结束，努力工作吧")}, 5*60*1000);
 	divText.innerHTML = "开始休息5分钟";
 }
 
