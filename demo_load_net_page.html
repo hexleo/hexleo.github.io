@@ -5,6 +5,11 @@ window.onload = function(){
     // print log
     MLog("Demo outsidePage");
     // send data to app.js
-    sendToApp("Demo_outsidePage");
+    sendToApp("Demo_outsidePage_window.onload");
 }
+
+document.onclick = function(event) {
+    sendToApp("Demo_outsidePage_onclick");
+}
+
 </script>
