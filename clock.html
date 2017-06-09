@@ -1,0 +1,61 @@
+<head>
+	<meta charset="UTF-8">
+	<title>番茄时钟</title>
+</head>
+<body>
+<h3><div id="state">番茄时钟</div></h3>
+<br />
+<h2>剩余<span id="lastTime">x</span>分钟</h2>
+<br />
+<textarea>当前任务：</textarea>
+<br />
+<button onclick="startWork()">开始工作</button>
+<button onclick="restWork()">开始休息</button>
+<script>
+var ONE_MINUTE = 60000;
+var workClock;
+var restClock;
+var showClock;
+var showTime;
+var divText;
+var spanText;
+window.onload = function() {
+	divText = document.getElementById("state");
+	spanText = document.getElementById("lastTime");
+}
+function startWork() {
+	clearTimer();
+	workClock = setTimeout(function() {
+			clearTimer();
+			spanText.innerHTML = '0';
+			alert("工作结束，尽情享受休息吧");
+		}, 25*ONE_MINUTE);
+	beginTimer(25);
+	divText.innerHTML = "开始工作25分钟";
+}
+
+function restWork() {
+	clearTimer();
+	restClock = setTimeout(function() {
+			clearTimer();
+			spanText.innerHTML = '0';
+			alert("休息结束，努力工作吧");
+		}, 5*ONE_MINUTE);
+	beginTimer(5);
+	divText.innerHTML = "开始休息5分钟";
+}
+
+function beginTimer(minutes) {
+	clearInterval(showClock);
+	showTime = minutes;
+	spanText.innerHTML = showTime;
+	showClock = setInterval(function() {showTime--; if(showTime>=0) {spanText.innerHTML = showTime}}, ONE_MINUTE);
+}
+
+function clearTimer() {
+	clearTimeout(workClock);
+	clearTimeout(restClock);
+	clearInterval(showClock);
+}
+</script>
+</body>
